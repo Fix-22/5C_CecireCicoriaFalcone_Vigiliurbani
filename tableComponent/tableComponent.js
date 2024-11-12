@@ -1,34 +1,3 @@
-/*
-table.build(["address", "dateTime", "plates", "injured", "deaths"]);
-table.newData([
-    {
-        address: "indirizzo1",
-        dateTime: "data",
-        plates: ["aaaaa1", "bbbbbb2"],
-        deaths: 5,
-        injured: 3,
-        coords: [45.4639, 9.112312]
-    },
-    {
-        address: "indirizzo2",
-        dateTime: "data1",
-        plates: ["aaaaa2", "bbbbbb2"],
-        deaths: 7,
-        injured: 4,
-        coords: [45.4639, 9.112312]
-    },
-    {
-        address: "indirizzo2",
-        dateTime: "data4",
-        plates: ["aaaaa3", "bbbbbb5"],
-        deaths: 7,
-        injured: 4,
-        coords: [45.4639, 9.112312]
-    },
-])
-table.newData(table.search("indirizzo2"));
-table.render();
-*/
 export const generateTable = (parentElement) => {
     let data = []
     let header = []

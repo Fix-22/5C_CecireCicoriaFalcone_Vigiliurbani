@@ -13,6 +13,7 @@ const mapContainer = document.getElementById("map");
 
 const searchbar = generateSearchbar(searchbarContainer);
 const map = generateMap(mapContainer);
+const table = generateTable(tableContainer);
 const geoencoder = generateGeoencoder();
 
 fetch("./conf.json")
@@ -25,6 +26,37 @@ fetch("./conf.json")
 
     });
     searchbar.render();
+
+    table.build(["A", "B", "C"])
+    table.build(["address", "dateTime", "plates", "injured", "deaths"]);
+table.newData([
+    {
+        address: "indirizzo1",
+        dateTime: "data",
+        plates: ["aaaaa1", "bbbbbb2"],
+        deaths: 5,
+        injured: 3,
+        coords: [45.4639, 9.112312]
+    },
+    {
+        address: "indirizzo2",
+        dateTime: "data1",
+        plates: ["aaaaa2", "bbbbbb2"],
+        deaths: 7,
+        injured: 4,
+        coords: [45.4639, 9.112312]
+    },
+    {
+        address: "indirizzo2",
+        dateTime: "data4",
+        plates: ["aaaaa3", "bbbbbb5"],
+        deaths: 7,
+        injured: 4,
+        coords: [45.4639, 9.112312]
+    },
+])
+table.newData(table.search("indirizzo2"));
+table.render();
 
     map.build([45.4639102, 9.1906426]); // default viene usato il Duomo di Milano
     map.render();
