@@ -1,0 +1,21 @@
+{
+  "name": "5c_cecirecicoriafalcone_vigiliurbani",
+  "version": "1.0.0",
+  "description": "Progetto mappe incidenti Milano",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/Fix-22/5C_CecireCicoriaFalcone_Vigiliurbani.git"
+  },
+  "keywords": [
+    "Vigili"
+  ],
+  "author": "Simone Cecire, Davide Cicoria,  Andrea Falcone",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  }
+}
