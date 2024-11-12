@@ -13,7 +13,7 @@ export const generateMap = (parentElement) => {
         render: () => {
             accidents.forEach((accident) => {
                 const marker = L.marker(accident.coords).addTo(map);
-                marker.bindPopup("<b>" + accident.name + "</b><br><b>Data:</b> " + accident.date + "<br><b>Morti:</b> " + accident.deaths + "<br><b>Feriti:</b> " + accident.injured);
+                marker.bindPopup("<b>" + accident.address + "</b><br><b>Data:</b> " + accident.datetime + "<br><b>Targhe coinvolte:</b> " + accident.plates.join(", ") + "<br><b>Feriti:</b> " + accident.injured + "<br><b>Morti:</b> " + accident.deaths);
              });
             
              if (accidents.length > 0) {
