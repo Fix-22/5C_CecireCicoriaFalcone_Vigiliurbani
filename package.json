@@ -16,6 +16,7 @@
   "author": "Simone Cecire, Davide Cicoria,  Andrea Falcone",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3"
   }
 }
