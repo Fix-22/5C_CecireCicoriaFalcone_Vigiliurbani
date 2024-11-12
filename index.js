@@ -13,13 +13,16 @@ const mapContainer = document.getElementById("map");
 
 const searchbar = generateSearchbar(searchbarContainer);
 const map = generateMap(mapContainer);
-const componentGeoencoder = generateGeoencoder();
+const geoencoder = generateGeoencoder();
 
 fetch("./conf.json")
 .then(r => r.json())
 .then(data => {
     searchbar.build("Indirizzo");
     searchbar.onsearch(address => {
+    });
+    searchbar.oncancel(() => {
+
     });
     searchbar.render();
 
