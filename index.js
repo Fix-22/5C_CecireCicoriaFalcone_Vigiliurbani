@@ -10,11 +10,15 @@ const tableContainer = document.getElementById("tableContainer");
 const spinner = document.getElementById("spinner");
 const searchbarContainer = document.getElementById("searchbarContainer");
 const mapContainer = document.getElementById("map");
+const submitButton = document.getElementById("submitButton") ;
 
 const searchbar = generateSearchbar(searchbarContainer);
 const map = generateMap(mapContainer);
 const table = generateTable(tableContainer);
 const geoencoder = generateGeoencoder();
+
+const fetchComponent = generateFetchComponent() ;
+const formComponent = generateForm(modalBody) ;
 
 fetch("./conf.json")
 .then(r => r.json())
@@ -57,6 +61,26 @@ fetch("./conf.json")
 
     });
     table.render();
+
+    fetchComponent.build() ;
+
+    formComponent.build(modalBody) ;
+    formComponent.render() ;
+
+    submitButton.onclick = () => {
+        let newAccident = formComponent.getInputData() ;
+        console.log(newAccident) ;
+        //pushare il nuovo dizionario sull'array degli incidenti
+        /*
+
+        if (newAccident !== undefined) {
+            //push sull'array
+        }
+
+        */
+
+    }
+
 
     map.build([45.4639102, 9.1906426]); // default viene usato il Duomo di Milano
     map.render();
