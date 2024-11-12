@@ -1,9 +1,12 @@
 export const generateTable = (parentElement) => {
-    let data = []
-    let header = []
+    let data = [];
+    let header = [];
+    let configuration = [];
+
     return {
-        build: (collums) => {
-            header = collums
+        build: (inputHeader, inputConfiguration) => {
+            header = inputHeader;
+            configuration = inputConfiguration;
         },
         render: () => {
             let html = "<table class='table'><tr>"
@@ -14,11 +17,11 @@ export const generateTable = (parentElement) => {
             for(let i = 0; i < data.length; i++) {
                 html += "<tr>"
                 for(let j = 0; j < header.length; j++) {
-                    html += "<td>" + data[i][header[j]] + "</td>"
+                    html += "<td>" + data[i][configuration[j]] + "</td>"
                 }
                 html += "</tr>"
             }
-            parentElement.innerHTML += html;
+            parentElement.innerHTML = html;
         },
         search: (address) => {
             let searchResults = []

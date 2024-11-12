@@ -20,46 +20,46 @@ fetch("./conf.json")
 .then(r => r.json())
 .then(data => {
     searchbar.build("Indirizzo");
+    searchbar.render();
+
+    table.build(["Indirizzo", "Data e ora", "Targhe", "Feriti", "Morti"], ["address", "dateTime", "plates", "injured", "deaths"]);
+    table.newData([
+        {
+            address: "indirizzo1",
+            dateTime: "data",
+            plates: ["aaaaa1", "bbbbbb2"],
+            deaths: 5,
+            injured: 3,
+            coords: [45.4639, 9.112312]
+        },
+        {
+            address: "indirizzo2",
+            dateTime: "data1",
+            plates: ["aaaaa2", "bbbbbb2"],
+            deaths: 7,
+            injured: 4,
+            coords: [45.4639, 9.112312]
+        },
+        {
+            address: "indirizzo2",
+            dateTime: "data4",
+            plates: ["aaaaa3", "bbbbbb5"],
+            deaths: 7,
+            injured: 4,
+            coords: [45.4639, 9.112312]
+        },
+    ])
     searchbar.onsearch(address => {
+        table.newData(table.search(address));
+        table.render();
     });
     searchbar.oncancel(() => {
 
     });
-    searchbar.render();
-
-    table.build(["A", "B", "C"])
-    table.build(["address", "dateTime", "plates", "injured", "deaths"]);
-table.newData([
-    {
-        address: "indirizzo1",
-        dateTime: "data",
-        plates: ["aaaaa1", "bbbbbb2"],
-        deaths: 5,
-        injured: 3,
-        coords: [45.4639, 9.112312]
-    },
-    {
-        address: "indirizzo2",
-        dateTime: "data1",
-        plates: ["aaaaa2", "bbbbbb2"],
-        deaths: 7,
-        injured: 4,
-        coords: [45.4639, 9.112312]
-    },
-    {
-        address: "indirizzo2",
-        dateTime: "data4",
-        plates: ["aaaaa3", "bbbbbb5"],
-        deaths: 7,
-        injured: 4,
-        coords: [45.4639, 9.112312]
-    },
-])
-table.newData(table.search("indirizzo2"));
-table.render();
+    table.render();
 
     map.build([45.4639102, 9.1906426]); // default viene usato il Duomo di Milano
     map.render();
-    map.addAccident({address: "indirizzo", datetime: "11/11/2011-20:10:10", plates: ["AA000AA", "BB111BB"], deaths: 5, injured: 3, coords: [45.4639102, 9.1906426]})
+    map.addAccident({address: "indirizzo", dateTime: "11/11/2011-20:10:10", plates: ["AA000AA", "BB111BB"], injured: 3, deaths: 5, coords: [45.4639102, 9.1906426]})
     map.render()
 });

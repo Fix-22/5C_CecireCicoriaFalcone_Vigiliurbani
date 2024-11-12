@@ -19,7 +19,7 @@ export const generateSearchbar = (parentElement) => {
             
             document.getElementById("searchButton").onclick = () => {
                 let searchText = document.getElementById("searchText").value;
-                callback(searchText);
+                searchCallback(searchText);
             };
 
             document.getElementById("cancelButton").onclick = cancelCallback;
