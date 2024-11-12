@@ -22,7 +22,9 @@ export const generateSearchbar = (parentElement) => {
                 searchCallback(searchText);
             };
 
-            document.getElementById("cancelButton").onclick = cancelCallback;
+            document.getElementById("cancelButton").onclick = () => {
+                cancelCallback();
+            };
         }
     };
 };
