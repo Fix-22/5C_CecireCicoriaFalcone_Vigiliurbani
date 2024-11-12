@@ -1,6 +1,6 @@
 export const generateMap = (parentElement) => {
     let map;
-    let places = [];
+    let accidents = [];
     
     return {
         build: (startCoords) => {
@@ -11,19 +11,25 @@ export const generateMap = (parentElement) => {
              }).addTo(map);
         },
         render: () => {
-            places.forEach((place) => {
-                const marker = L.marker(place.coords).addTo(map);
-                marker.bindPopup("<b>" + place.name + "</b>");
+            accidents.forEach((accident) => {
+                const marker = L.marker(accident.coords).addTo(map);
+                marker.bindPopup("<b>" + accident.name + "</b><br><b>Data:</b> " + accident.date + "<br><b>Morti:</b> " + accident.deaths + "<br><b>Feriti:</b> " + accident.injured);
              });
             
-             if (places.length > 0) {
-                map.setView(places[places.length -1].coords, 14);
+             if (accidents.length > 0) {
+                map.setView(accidents[accidents.length - 1].coords, 14);
              }
         },
-        addPlace: (place) => {
-            if (places.indexOf(place) === -1) {
-                places.push(place);
+        addAccident: (accident) => {
+            if (accidents.indexOf(accident) === -1) {
+                accidents.push(accident);
             }
+        },
+        getAccidents: () => {
+            return accidents;
+        },
+        setAccidents: (inputAccidents) => {
+            accidents = inputAccidents;
         }
     };
 };
