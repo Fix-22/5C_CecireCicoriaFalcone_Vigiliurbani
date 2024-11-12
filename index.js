@@ -23,46 +23,34 @@ const formComponent = generateForm(modalBody) ;
 fetch("./conf.json")
 .then(r => r.json())
 .then(data => {
+    let cacheToken = data["cacheToken"];
+    let mapsToken = data["mapsToken"];
+
+    geoencoder.build(mapsToken);
+    fetchComponent.build(cacheToken);
+
     searchbar.build("Indirizzo");
     searchbar.render();
 
     table.build(["Indirizzo", "Data e ora", "Targhe", "Feriti", "Morti"], ["address", "dateTime", "plates", "injured", "deaths"]);
-    table.newData([
-        {
-            address: "indirizzo1",
-            dateTime: "data",
-            plates: ["aaaaa1", "bbbbbb2"],
-            deaths: 5,
-            injured: 3,
-            coords: [45.4639, 9.112312]
-        },
-        {
-            address: "indirizzo2",
-            dateTime: "data1",
-            plates: ["aaaaa2", "bbbbbb2"],
-            deaths: 7,
-            injured: 4,
-            coords: [45.4639, 9.112312]
-        },
-        {
-            address: "indirizzo2",
-            dateTime: "data4",
-            plates: ["aaaaa3", "bbbbbb5"],
-            deaths: 7,
-            injured: 4,
-            coords: [45.4639, 9.112312]
-        },
-    ])
+    fetchComponent.getData("vigili").then(data => {
+        spinner.classList.add("d-none");
+        table.newData(data);
+        table.render();
+    });
+    
     searchbar.onsearch(address => {
         table.newData(table.search(address));
         table.render();
     });
     searchbar.oncancel(() => {
-
+        spinner.classList.remove("d-none");
+        fetchComponent.getData("vigili").then(data => {
+            spinner.classList.add("d-none");
+            table.newData(data);
+            table.render();
+        });
     });
-    table.render();
-
-    fetchComponent.build() ;
 
     formComponent.build(modalBody) ;
     formComponent.render() ;
@@ -80,7 +68,6 @@ fetch("./conf.json")
         */
 
     }
-
 
     map.build([45.4639102, 9.1906426]); // default viene usato il Duomo di Milano
     map.render();
