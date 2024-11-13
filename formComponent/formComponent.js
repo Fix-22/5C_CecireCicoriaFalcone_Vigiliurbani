@@ -10,52 +10,39 @@ export const generateForm = (parentElement) => {
         render : function() {
             let html = `<form id="accidentForm" class="container">
                 <div class="row">
-                    <div class="input-group">
-                        <label class="input-group-text">Via</label>
-                        <input type="text" id="streetInput" class="form-control" />
+                    <label class="input-group-text">Via</label>
+                    <input type="text" id="streetInput" class="form-control" />
+                </div>
+
+                <div class="row">
+                    <label class="input-group-text">Data e Ora</label>
+                    <input type="datetime-local" id="datetimeInput" class="form-control" />
+                </div>
+
+                <div class="row">
+                    <label class="input-group-text">Targa 1</label>
+                    <input type="text" id="plate1Input" class="form-control" />
+                </div>
+
+                <div class="row">
+                    <label class="input-group-text">Targa 2</label>
+                    <input type="text" id="plate2Input" class="form-control" />
+                </div>
+
+                <div class="row">
+                    <label class="input-group-text">Targa 3</label>
+                    <input type="text" id="plate3Input" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="input-group">
-                        <label class="input-group-text">Data e Ora</label>
-                        <input type="datetime-local" id="datetimeInput" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-group">
-                        <label class="input-group-text">Targa 1</label>
-                        <input type="text" id="plate1Input" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-group">
-                        <label class="input-group-text">Targa 2</label>
-                        <input type="text" id="plate2Input" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-group">
-                        <label class="input-group-text">Targa 3</label>
-                        <input type="text" id="plate3Input" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-group">
-                        <label class="input-group-text">Morti</label>
-                        <input type="text" id="deathsInput" class="form-control" />
-                    </div>
+                    <label class="input-group-text">Morti</label>
+                    <input type="text" id="deathsInput" class="form-control" />
                 </div>
                 
                 <div class="row">
-                    <div class="input-group">
-                        <label class="input-group-text">Feriti</label>
-                        <input type="text" id="injuredInput" class="form-control" />
-                    </div>
+                    <label class="input-group-text">Feriti</label>
+                    <input type="text" id="injuredInput" class="form-control" />
                 </div>
             </form>` ;
             parentElement.innerHTML = html ;
