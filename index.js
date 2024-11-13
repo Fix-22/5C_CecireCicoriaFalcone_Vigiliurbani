@@ -27,6 +27,7 @@ fetch("./conf.json")
 
     geoencoder.build(mapsToken);
     fetchComponent.build(cacheToken);
+    map.build([45.4639102, 9.1906426]); // default viene usato il Duomo di Milano
 
     searchbar.build("Indirizzo");
     searchbar.render();
@@ -36,7 +37,6 @@ fetch("./conf.json")
         spinner.classList.add("d-none");
         table.newData(data);
         table.render();
-        map.build([45.4639102, 9.1906426]); // default viene usato il Duomo di Milano
         map.setAccidents(data);
         map.render();
     });
