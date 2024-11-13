@@ -57,17 +57,16 @@ fetch("./conf.json")
     formComponent.build(modalBody) ;
     formComponent.render() ;
 
+    formComponent.build(modalBody) ;
+    formComponent.render() ;
     submitButton.onclick = () => {
-        let newAccident = formComponent.getInputData() ;
+        let newAccident = formComponent.onsubmit(formComponent.getInputData) ;
         console.log(newAccident) ;
         //pushare il nuovo dizionario sull'array degli incidenti
         /*
-
         if (newAccident !== undefined) {
             //push sull'array
         }
-
         */
-
     }
 });
