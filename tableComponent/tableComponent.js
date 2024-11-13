@@ -9,9 +9,9 @@ export const generateTable = (parentElement) => {
             configuration = inputConfiguration;
         },
         render: () => {
-            let html = "<table class='table'><tr>"
+            let html = "<table class='table table-bordered'><tr>"
             for(let i = 0; i < header.length; i++) {
-                html += "<th>" + header[i] + "</th>"
+                html += "<th class='table-secondary'>" + header[i] + "</th>"
             }
             html += "</tr>"
             for(let i = 0; i < data.length; i++) {
