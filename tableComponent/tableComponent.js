@@ -26,7 +26,7 @@ export const generateTable = (parentElement) => {
         search: (address) => {
             let searchResults = []
             for(let i = 0; i < data.length; i++) {
-                if (data[i].address == address) {
+                if (data[i].address.includes(address)) {
                     searchResults.push(data[i])
                 }
             }
