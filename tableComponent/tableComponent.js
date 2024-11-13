@@ -17,7 +17,11 @@ export const generateTable = (parentElement) => {
             for(let i = 0; i < data.length; i++) {
                 html += "<tr>"
                 for(let j = 0; j < header.length; j++) {
-                    html += "<td>" + data[i][configuration[j]] + "</td>"
+                    if (configuration[j] == "plates") {
+                        html += "<td>" + data[i][configuration[j]].join(", ") + "</td>"
+                    } else {
+                        html += "<td>" + data[i][configuration[j]] + "</td>"
+                    }
                 }
                 html += "</tr>"
             }
