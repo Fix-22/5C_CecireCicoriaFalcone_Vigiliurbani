@@ -56,17 +56,32 @@ fetch("./conf.json")
 
     formComponent.build(modalBody) ;
     formComponent.render() ;
+    formComponent.onsubmit(accident => {
+        let newAddress = document.getElementById("streetInput") ;
+        let newDatetime = document.getElementById("datetimeInput") ;
+        let newPlate1 = document.getElementById("plate1Input") ;
+        let newPlate2 = document.getElementById("plate2Input") ;
+        let newPlate3 = document.getElementById("plate3Input") ;
+        let newPlates = [newPlate1.value, newPlate2.value, newPlate3.value] ;
+        let newDeaths = document.getElementById("deathsInput") ;
+        let newInjured = document.getElementById("injuredInput") ;
 
-    formComponent.build(modalBody) ;
-    formComponent.render() ;
-    submitButton.onclick = () => {
-        let newAccident = formComponent.onsubmit(formComponent.getInputData) ;
-        console.log(newAccident) ;
-        //pushare il nuovo dizionario sull'array degli incidenti
-        /*
-        if (newAccident !== undefined) {
-            //push sull'array
-        }
-        */
-    }
+        accident = {} ;
+        accident.address = newAddress.value + ", milano" ;
+        accident.date = newDatetime.value ;
+        accident.plates = newPlates ;
+        accident.deaths = newDeaths.value ;
+        accident.injured =  newInjured.value ;
+
+        streetInput.value = "" ;
+        newDatetime.value = "" ;
+        newPlate1.value = "" ;
+        newPlate2.value = "" ;
+        newPlate3.value = "" ;
+        newDeaths.value = "" ;
+        newInjured.value = "" ;
+
+        console.log(accident) ;
+        return accident ;
+    });
 });

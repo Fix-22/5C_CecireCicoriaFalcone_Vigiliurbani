@@ -46,32 +46,12 @@ export const generateForm = (parentElement) => {
                 </div>
             </form>` ;
             parentElement.innerHTML = html ;
-        },
-        getInputData : function() {
-            let newAddress = document.getElementById("streetInput").value + ", milano" ;
-            let newDatetime = document.getElementById("datetimeInput").value ;
-            let newPlate1 = document.getElementById("plate1Input").value ;
-            let newPlate2 = document.getElementById("plate2Input").value ;
-            let newPlate3 = document.getElementById("plate3Input").value ;
-            let newPlates = [newPlate1, newPlate2, newPlate3] ;
-            let newDeaths = document.getElementById("deathsInput").value ;
-            let newInjured = document.getElementById("injuredInput").value ;
-
-            streetInput.value = "" ;
-            newDatetime.value = "" ;
-            newPlate1.value = "" ;
-            newPlate2.value = "" ;
-            newPlate3.value = "" ;
-            newDeaths.value = "" ;
-            newInjured.value = "" ; 
-
-            return {
-                address: newAddress,
-                date: newDatetime,
-                plates: newPlates,
-                deaths: newDeaths,
-                injured: newInjured
+            
+            let newAccident ;
+            document.getElementById("submitButton").onclick = () => {
+                newAccident = callback(newAccident) ;
             }
+            return newAccident ;
         }
     }
 };
