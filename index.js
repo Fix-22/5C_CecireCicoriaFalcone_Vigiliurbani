@@ -37,6 +37,9 @@ fetch("./conf.json")
         spinner.classList.add("d-none");
         table.newData(data);
         table.render();
+        map.build([45.4639102, 9.1906426]); // default viene usato il Duomo di Milano
+        map.setAccidents(data);
+        map.render();
     });
     
     searchbar.onsearch(address => {
@@ -68,9 +71,4 @@ fetch("./conf.json")
         */
 
     }
-
-    map.build([45.4639102, 9.1906426]); // default viene usato il Duomo di Milano
-    map.render();
-    map.addAccident({address: "indirizzo", dateTime: "11/11/2011-20:10:10", plates: ["AA000AA", "BB111BB"], injured: 3, deaths: 5, coords: [45.4639102, 9.1906426]})
-    map.render()
 });
