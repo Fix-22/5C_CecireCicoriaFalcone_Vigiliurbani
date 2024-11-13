@@ -19,7 +19,7 @@ export const generateSearchbar = (parentElement) => {
             
             document.getElementById("searchButton").onclick = () => {
                 let searchText = document.getElementById("searchText").value;
-
+                
                 if (searchText) {
                     searchCallback(searchText);
                 }
@@ -29,7 +29,10 @@ export const generateSearchbar = (parentElement) => {
             };
 
             document.getElementById("cancelButton").onclick = () => {
-                cancelCallback();
+                if (document.getElementById("searchText").value) {
+                    document.getElementById("searchText").value = "";
+                    cancelCallback();
+                }
             };
         }
     };
