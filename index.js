@@ -16,7 +16,6 @@ const searchbar = generateSearchbar(searchbarContainer);
 const map = generateMap(mapContainer);
 const table = generateTable(tableContainer);
 const geoencoder = generateGeoencoder();
-
 const fetchComponent = generateFetchComponent() ;
 const formComponent = generateForm(modalBody) ;
 
