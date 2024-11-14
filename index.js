@@ -49,7 +49,6 @@ fetch("./conf.json")
         table.render();
     });
 
-    formComponent.build(modalBody) ;
     formComponent.render() ;
     formComponent.onsubmit(accident => {
         if (accident.address && accident.dateTime && accident.plates.length >= 0 && parseInt(accident.injured) >= 0 && parseInt(accident.deaths) >= 0) {

@@ -2,8 +2,6 @@ export const generateForm = (parentElement) => {
     let callback  ;
 
     return {
-        build : function() {
-        },
         onsubmit : function(inputCallback) {
             callback = inputCallback ;
         },
