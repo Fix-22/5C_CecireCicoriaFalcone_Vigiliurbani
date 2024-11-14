@@ -10,7 +10,6 @@ const tableContainer = document.getElementById("tableContainer");
 const spinner = document.getElementById("spinner");
 const searchbarContainer = document.getElementById("searchbarContainer");
 const mapContainer = document.getElementById("map");
-const submitButton = document.getElementById("submitButton") ;
 
 const searchbar = generateSearchbar(searchbarContainer);
 const map = generateMap(mapContainer);
@@ -25,6 +24,8 @@ fetch("./conf.json")
     let cacheToken = data["cacheToken"];
     let mapsToken = data["mapsToken"];
 
+    const modal = new bootstrap.Modal(document.getElementById("modalForm"));
+
     geoencoder.build(mapsToken);
     fetchComponent.build(cacheToken);
     map.build([45.4639102, 9.1906426]); // default viene usato il Duomo di Milano
@@ -35,53 +36,60 @@ fetch("./conf.json")
     table.build(["Indirizzo", "Data e ora", "Targhe", "Feriti", "Morti"], ["address", "dateTime", "plates", "injured", "deaths"]);
     fetchComponent.getData("vigili").then(data => {
         spinner.classList.add("d-none");
-        table.newData(data);
+        table.setData(data);
         table.render();
         map.setAccidents(data);
         map.render();
     });
     
     searchbar.onsearch(address => {
-        table.newData(table.search(address));
-        table.render();
+        table.renderFilter(table.search(address));
     });
     searchbar.oncancel(() => {
-        spinner.classList.remove("d-none");
-        fetchComponent.getData("vigili").then(data => {
-            spinner.classList.add("d-none");
-            table.newData(data);
-            table.render();
-        });
+        table.render();
     });
 
     formComponent.build(modalBody) ;
     formComponent.render() ;
     formComponent.onsubmit(accident => {
-        let newAddress = document.getElementById("streetInput") ;
-        let newDatetime = document.getElementById("datetimeInput") ;
-        let newPlate1 = document.getElementById("plate1Input") ;
-        let newPlate2 = document.getElementById("plate2Input") ;
-        let newPlate3 = document.getElementById("plate3Input") ;
-        let newPlates = [newPlate1.value, newPlate2.value, newPlate3.value] ;
-        let newDeaths = document.getElementById("deathsInput") ;
-        let newInjured = document.getElementById("injuredInput") ;
+        if (accident.address && accident.dateTime && accident.plates.length >= 0 && parseInt(accident.injured) >= 0 && parseInt(accident.deaths) >= 0) {
+            let currentDate = Date.parse(accident.dateTime);
+            let today = new Date();
 
-        accident = {} ;
-        accident.address = newAddress.value + ", milano" ;
-        accident.date = newDatetime.value ;
-        accident.plates = newPlates ;
-        accident.deaths = newDeaths.value ;
-        accident.injured =  newInjured.value ;
+            if (currentDate <= today) {
+                geoencoder.encode(accident.address)
+                .then(data => {
+                    accident.address = data.name;
+                    accident.coords = data.coords;
 
-        streetInput.value = "" ;
-        newDatetime.value = "" ;
-        newPlate1.value = "" ;
-        newPlate2.value = "" ;
-        newPlate3.value = "" ;
-        newDeaths.value = "" ;
-        newInjured.value = "" ;
+                    let currentData = table.getData();
+                    currentData.push(accident);
 
-        console.log(accident) ;
-        return accident ;
+                    formComponent.clear();
+                    modal.hide();
+                    spinner.classList.remove("d-none");
+                    
+                    fetchComponent.setData("vigili", currentData).then(r => {
+                        fetchComponent.getData("vigili").then(data => {
+                            spinner.classList.add("d-none");
+                            table.setData(data);
+                            table.render();
+                            map.setAccidents(data);
+                            map.render();
+                        }).catch(err => console.log(err));
+                    }).catch(err => console.log(err));
+                })
+                .catch(err => {
+                    console.log(err);
+                    formComponent.setError("Luogo non trovato");
+                });
+            }
+            else {
+                formComponent.setError("Data e ora non valide");
+            }
+        }
+        else {
+            formComponent.setError("Dati mancanti o invalidi");
+        }
     });
 });
