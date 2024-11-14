@@ -87,13 +87,13 @@ export const generateForm = (parentElement) => {
             })
         },
         clear: () => {
-            newAddress.value = "" ;
-            newDatetime.value = "" ;
-            newPlate1.value = "" ;
-            newPlate2.value = "" ;
-            newPlate3.value = "" ;
-            newDeaths.value = "" ;
-            newInjured.value = "" ;
+            document.getElementById("streetInput").value = "" ;
+            document.getElementById("datetimeInput").value = "" ;
+            document.getElementById("plate1Input").value = "" ;
+            document.getElementById("plate2Input").value = "" ;
+            document.getElementById("plate3Input").value = "" ;
+            document.getElementById("deathsInput").value = "" ;
+            document.getElementById("injuredInput").value = "" ;
             document.getElementById("resultLabel").innerText = "";
         },
         setError: (error) => {
