@@ -66,7 +66,7 @@ export const generateForm = (parentElement) => {
                         if (newPlate1.value && newPlates.indexOf(newPlate1.value) === -1) newPlates.push(newPlate1.value)
                         if (newPlate2.value && newPlates.indexOf(newPlate2.value) === -1) newPlates.push(newPlate2.value)
                         if (newPlate3.value && newPlates.indexOf(newPlate3.value) === -1) newPlates.push(newPlate3.value)
-                        console.log(newPlates)
+
                         let accident = {} ;
                         accident.address = newAddress.value + ", milano" ;
                         accident.dateTime = newDatetime.value;
