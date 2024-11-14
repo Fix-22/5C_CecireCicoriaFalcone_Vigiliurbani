@@ -24,7 +24,7 @@ fetch("./conf.json")
     let cacheToken = data["cacheToken"];
     let mapsToken = data["mapsToken"];
 
-    const modal = new bootstrap.Modal(document.getElementById("modalForm"));
+    const modal = new bootstrap.Modal(document.getElementById("modalForm")); // per gestire modal via js
 
     geoencoder.build(mapsToken);
     fetchComponent.build(cacheToken);
