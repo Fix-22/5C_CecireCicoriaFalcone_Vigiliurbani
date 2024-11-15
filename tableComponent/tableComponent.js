@@ -63,6 +63,7 @@ export const generateTable = (parentElement) => {
         },
         setData: (values) => {
             data = values
+            data.sort((a, b) =>  new Date(a.dateTime) - new Date(b.dateTime))
         },
         getData: () => {
             return data;
