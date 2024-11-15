@@ -71,6 +71,7 @@ export const generateForm = (parentElement) => {
                         accident.plates = newPlates ;
                         accident.injured =  newInjured.value ;
                         accident.deaths = newDeaths.value ;
+                        newPlates = [];
                         
                         callback(accident);    
                     }
