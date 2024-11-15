@@ -4,7 +4,7 @@ export const generateMap = (parentElement) => {
     
     return {
         build: (startCoords) => {
-            map = L.map(parentElement).setView(startCoords, 14);
+            map = L.map(parentElement).setView(startCoords, 11);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
