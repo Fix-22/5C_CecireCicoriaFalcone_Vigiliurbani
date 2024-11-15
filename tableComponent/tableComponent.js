@@ -30,7 +30,7 @@ export const generateTable = (parentElement) => {
             }
             parentElement.innerHTML = html;
         },
-        search: (address) => {
+        search: (address) => { // cerca nei dati le righe che ontengono gli indirizzi
             let searchResults = []
             for(let i = 0; i < data.length; i++) {
                 if (data[i].address.toLowerCase().includes(address.toLowerCase())) {
@@ -39,7 +39,7 @@ export const generateTable = (parentElement) => {
             }
             return searchResults;
         },
-        renderFilter: (newData) => {
+        renderFilter: (newData) => { // metodo che fa la render di specifici dati, senza salvarli
             let html = "<table class='table table-bordered'><tr>"
             for(let i = 0; i < header.length; i++) {
                 html += "<th class='table-secondary'>" + header[i] + "</th>"
