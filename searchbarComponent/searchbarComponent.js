@@ -29,10 +29,8 @@ export const generateSearchbar = (parentElement) => {
             };
 
             document.getElementById("cancelButton").onclick = () => {
-                if (document.getElementById("searchText").value) {
-                    document.getElementById("searchText").value = "";
-                    cancelCallback();
-                }
+                document.getElementById("searchText").value = "";
+                cancelCallback();
             };
         }
     };
