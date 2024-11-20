@@ -89,7 +89,7 @@ export const generateLoginComponent = (parentElement) => {
                             document.querySelectorAll("." + privateClass).forEach(e => {
                                 e.classList.remove("d-none");
                             });
-
+                            
                             loginResultLabel.classList.add("text-success") ;
                             loginResultLabel.classList.remove("text-danger") ;
                             loginResultLabel.innerText = "Login effettuato con successo" ;
@@ -105,7 +105,7 @@ export const generateLoginComponent = (parentElement) => {
                         }
                     })
                     .catch(err => {
-
+                        console.log(err) ;
                     });
                 }
             };
@@ -127,27 +127,20 @@ export const generateLoginComponent = (parentElement) => {
                             document.querySelectorAll("." + privateClass).forEach(e => {
                                 e.classList.remove("d-none");
                             });
-
-                            document.getElementById("loginContainer").classList.add("d-none");
                         
-
-                            //modificare per register
                             loginResultLabel.classList.add("text-success") ;
                             loginResultLabel.classList.remove("text-danger") ;
-                            loginResultLabel.innerText = "Login effettuato con successo" ;
+                            loginResultLabel.innerText = "Registrazione e login effettuati con successo" ;
 
                             setTimeout(() => {
                                 document.getElementById("loginContainer").classList.add("d-none");
+                                console.log("eugwuwheeufwe") ;
                             }, 1500) ;
 
-                        } else {
-                            loginResultLabel.classList.add("text-danger") ;
-                            loginResultLabel.classList.remove("text-success") ;
-                            loginResultLabel.innerText = "Nome utente o password errati!" ;
                         }
                     })
                     .catch(err => {
-
+                        console.log(err) ;
                     });
                 }
             };
