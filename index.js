@@ -4,12 +4,14 @@ import {generateGeoencoder} from "./geoencoderComponent/geoencoderComponent.js"
 import {generateMap} from "./mapComponent/mapComponent.js"
 import {generateTable} from "./tableComponent/tableComponent.js";
 import {generateSearchbar} from "./searchbarComponent/searchbarComponent.js";
+import { generateLoginComponent } from "./loginComponent/loginComponent.js";
 
 const modalBody = document.getElementById("modalBody");
 const tableContainer = document.getElementById("tableContainer");
 const spinner = document.getElementById("spinner");
 const searchbarContainer = document.getElementById("searchbarContainer");
 const mapContainer = document.getElementById("map");
+const loginContainer = document.getElementById("loginContainer");
 
 const searchbar = generateSearchbar(searchbarContainer);
 const map = generateMap(mapContainer);
@@ -17,6 +19,7 @@ const table = generateTable(tableContainer);
 const geoencoder = generateGeoencoder();
 const fetchComponent = generateFetchComponent() ;
 const formComponent = generateForm(modalBody) ;
+const loginComponent = generateLoginComponent(loginContainer);
 
 fetch("./conf.json")
 .then(r => r.json())
@@ -25,10 +28,16 @@ fetch("./conf.json")
     let mapsToken = data["mapsToken"];
 
     const modal = new bootstrap.Modal(document.getElementById("modalForm")); // per gestire modal via js
+    
+    document.querySelectorAll('.private').forEach(e => {
+        e.classList.add("d-none");
+    });
 
     geoencoder.build(mapsToken);
     fetchComponent.build(cacheToken);
     map.build([45.4639102, 9.1906426]); // default viene usato il Duomo di Milano
+    loginComponent.build(cacheToken, "private");
+    loginComponent.renderForm();
 
     searchbar.build("Indirizzo");
     searchbar.render();
